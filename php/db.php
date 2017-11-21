@@ -14,4 +14,3 @@
         die("Database connection failed: " . $db->connect_error);
     }
     
-    echo file_get_contents("./html/upload.html");
