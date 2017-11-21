@@ -16,13 +16,12 @@
             exit();
         }
         
-        if (!move_uploaded_file($_FILES["mp3"]["tmp_name"], $target_file)) {
+        if (!move_uploaded_file($_FILES["mp3"]["tmp_name"], $target_file)) { //TODO store file in database instead of on server
             echo "Error saving file.";
             exit();
         }
         $tags = $getID3->analyze($target_file);
         getid3_lib::CopyTagsToComments($tags);
-        //echo '<pre>'.htmlentities(print_r($target_file['comments'], true), ENT_SUBSTITUTE).'</pre>';
         $html = file_get_contents("../html/edit.html");
         $html = str_replace("{title}", $tags[comments_html][title] ? $tags[comments_html][title][0] : "", $html);
         $html = str_replace("{artist}", $tags[comments_html][artist] ? $tags[comments_html][artist][0] : "", $html);
