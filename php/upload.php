@@ -24,9 +24,11 @@
         $result = $db->query($sql);
         if(!$result){
             echo("Error inserting file: " . $db->error);
+        } else {
+            $id = $db->insert_id;
         }
-        
         $html = file_get_contents("../html/edit.html");
+        $html = str_replace("{songId}", $id, $html);
         $html = str_replace("{title}", $tags[comments_html][title][0] ? $tags[comments_html][title][0] : "", $html);
         $html = str_replace("{artist}", $tags[comments_html][artist][0] ? $tags[comments_html][artist][0] : "", $html);
         $html = str_replace("{album}", $tags[comments_html][album][0] ? $tags[comments_html][album][0] : "", $html);
