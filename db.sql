@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS `songs`;
+CREATE TABLE `songs` (
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
+    `mp3` MEDIUMBLOB NOT NULL,
+    `title` VARCHAR(100) NOT NULL DEFAULT '',
+    `artist` VARCHAR(100) NOT NULL DEFAULT '',
+    `album` VARCHAR(100) NOT NULL DEFAULT '',
+    `genre` VARCHAR(100) NOT NULL DEFAULT '',
+    PRIMARY KEY (`id`))
+)
