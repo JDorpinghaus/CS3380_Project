@@ -6,5 +6,5 @@ CREATE TABLE `songs` (
     `artist` VARCHAR(100) NOT NULL DEFAULT '',
     `album` VARCHAR(100) NOT NULL DEFAULT '',
     `genre` VARCHAR(100) NOT NULL DEFAULT '',
-    PRIMARY KEY (`id`))
+    PRIMARY KEY (`id`)
 )
