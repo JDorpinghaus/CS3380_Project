@@ -5,12 +5,7 @@
 	<title>Database Login</title>
 <!--    style -->
     <style>
-        #loginUI{
-            background-color: coral;
-            max-width: 400px;
-            max-height:50px;
-            
-        }
+
     
     
     </style>
@@ -23,7 +18,7 @@
 </head>
 <body>
 
-    <div id="loginUI" class="login_ui">   <!-- wrapper div-->
+    <div id="wrapper" class="wrapperUI">   <!-- wrapper div-->
         <h1 class="ui_header">Login</h1>
         
         <?php   //print error if exsist
@@ -36,12 +31,12 @@
             
             <input type="hidden" name="action" value="do_login">
             
-            <div class="userNameDiv">  <!-- User name Div-->
+            <div class="loginInput">  <!-- User name Div-->
                 <label for="username">User name:</label>
                 <input type="text" id="username" name="username" class="userNameInput" autofocus value="<?php print $username; ?>">
             </div>
             
-            <div class="passwordDiv">   <!-- Password Div-->
+            <div class="loginInput">   <!-- Password Div-->
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" class="passInput">
             </div>
