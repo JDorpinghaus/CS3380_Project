@@ -4,6 +4,7 @@ Jacob Dorpinghaus
 Jacob Ross
 Mason Breece
 Lawrence Neely
+Matt Barber
 
 ### Application Description
 
