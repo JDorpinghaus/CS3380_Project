@@ -3,6 +3,7 @@
 Jacob Dorpinghaus
 Jacob Ross
 Mason Breece
+Lawrence Neely
 
 ### Application Description
 
