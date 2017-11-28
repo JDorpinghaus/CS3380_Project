@@ -3,8 +3,18 @@
   <head>
     <meta charset="UTF-8">
     <title>CS3380 Project: Upload</title>
+      <style>
+        body {
+            background-color: aliceblue;
+        }
+          .wrapper {
+            text-align: center;
+              margin: 224px 360px 106px 360px;
+          }
+      </style>
   </head>
   <body>
+      <div class="wrapper">
    <form action="/php/edit.php" method="post" enctype="multipart/form-data">
     <input type="hidden" name="songId" value="{songId}">
     <p>Title: </p><input id="title" type="text" name="title" value="{title}"/><br>
@@ -14,5 +24,6 @@
     <input id="submit" type="submit" value="Save"/>
   </form>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+      </div>
   </body>
 </html>
