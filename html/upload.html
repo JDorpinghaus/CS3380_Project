@@ -3,8 +3,18 @@
   <head>
     <meta charset="UTF-8">
     <title>CS3380 Project: Upload</title>
+      <style>
+        body {
+            background-color: aliceblue;
+        }
+          .wrapper {
+            text-align: center;
+              margin: 224px 360px 106px 360px;
+          }
+      </style>
   </head>
   <body>
+      <div class="wrapper">
    <form action="/php/upload.php" method="post" enctype="multipart/form-data">
     <input id="mp3" type="file" name="mp3" />
     </br>
@@ -12,5 +22,6 @@
   </form>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+      </div>
   </body>
 </html>
