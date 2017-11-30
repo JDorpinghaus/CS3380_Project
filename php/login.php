@@ -56,7 +56,7 @@
         $password = $mysqli->real_escape_string($password);
         
         //more secure password storing for website
-        $password = sha1($password); 
+//        $password = sha1($password); 
         
         // Build query
 		$query = "SELECT id FROM users WHERE userName = '$username' AND password = '$password'";
