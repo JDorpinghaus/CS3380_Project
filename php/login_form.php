@@ -3,13 +3,10 @@
 <html>
 <head>
 	<title>Database Login</title>
-<!--    style -->
-    <style>
-
-    
-    
-    </style>
-<!--    script for submit -->
+	<link href="app.css" rel="stylesheet" type="text/css">
+    <link href="../jquery-ui-1.11.4.custom/jquery-ui.min.css" rel="stylesheet" type="text/css">
+    <script src="../jquery-ui-1.11.4.custom/external/jquery/jquery.js"></script>
+    <script src="../jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
     <script>
         $(function(){
             $("input[type=submit]").button();
@@ -17,38 +14,34 @@
     </script>
 </head>
 <body>
-
-    <div id="wrapper" class="wrapperUI">   <!-- wrapper div-->
-        <h1 class="ui_header">Login</h1>
-        
-        <?php   //print error if exsist
+    <div id="loginWidget" class="ui-widget">
+        <h1 class="ui-widget-header">Login</h1>
+<!--        if error php to send to widget   -->
+        <?php
             if ($error) {
                 print "<div class=\"ui-state-error\">$error</div>\n";
             }
         ?>
         
-        <form action="login.php" method="POST">   <!-- login form  -->
+        
+        <form action="login.php" method="POST">
             
             <input type="hidden" name="action" value="do_login">
             
-            <div class="loginInput">  <!-- User name Div-->
+            <div class="stack">
                 <label for="username">User name:</label>
-                <input type="text" id="username" name="username" class="userNameInput" autofocus value="<?php print $username; ?>">
+                <input type="text" id="username" name="username" class="ui-widget-content ui-corner-all" autofocus value="<?php print $username; ?>">
             </div>
             
-            <div class="loginInput">   <!-- Password Div-->
+            <div class="stack">
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password" class="passInput">
+                <input type="password" id="password" name="password" class="ui-widget-content ui-corner-all">
             </div>
             
             <div class="stack">
                 <input type="submit" value="Submit">
             </div>
         </form>
-        
-        <br>
-        <a href="createUser_form.php">Not a User?</a>
-        
     </div>
 </body>
 </html>

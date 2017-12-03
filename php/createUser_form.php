@@ -20,9 +20,9 @@
             }
         ?>
         
-        <form action="login.php" method="POST">
+        <form action="createUser.php" method="POST">
             
-            <input type="hidden" name="action" value="do_login">
+            <input type="hidden" name="action" value="do_create">
             
             <div class="newUserInput">
                 <label for="firstName">First name:</label>

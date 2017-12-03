@@ -1,6 +1,5 @@
 <?php
 
-
     // HTTPS redirect
     if ($_SERVER['HTTPS'] !== 'on') {
 		$redirectURL = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
@@ -8,7 +7,6 @@
 		exit;
 	}
 	
-    //if no session
 	if(!session_start()) {
 		// If the session couldn't start, present an error
 		header("Location: error.php");
@@ -20,7 +18,7 @@
 	$loggedIn = empty($_SESSION['loggedin']) ? false : $_SESSION['loggedin'];
 	
 	if ($loggedIn) {
-		header("Location: index.php");
+		header("Location: page1.php");
 		exit;
 	}
 	
@@ -36,10 +34,10 @@
 	function handle_login() {
 		$username = empty($_POST['username']) ? '' : $_POST['username'];
 		$password = empty($_POST['password']) ? '' : $_POST['password'];
-        
+	
         
         // Require the credentials
-        require_once 'db.php';
+        require_once '../db.php';
         
         // Connect to the database
         $mysqli = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
@@ -56,15 +54,14 @@
         $password = $mysqli->real_escape_string($password);
         
         //more secure password storing for website
-//        $password = sha1($password); 
+        $password = sha1($password); 
         
-        // Build query
+        // Build SQL query
 		$query = "SELECT id FROM users WHERE userName = '$username' AND password = '$password'";
         
-		// Run the query
+		// send $query
 		$mysqliResult = $mysqli->query($query);
 		
-        // If there was a result...
         if ($mysqliResult) {
             // How many records were returned?
             $match = $mysqliResult->num_rows;
@@ -101,5 +98,4 @@
 		require "login_form.php";
         exit;
 	}
-	
 ?>
