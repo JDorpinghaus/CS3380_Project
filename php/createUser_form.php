@@ -85,7 +85,7 @@
         </form>
         
         <br>
-        <a href="createUser_form.php">Not a User?</a>
+        <a href="login_form.php">Log In</a>
         
     </div>
 </body>
