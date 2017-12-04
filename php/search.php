@@ -10,14 +10,14 @@
         $artist = $_REQUEST['artist'];
         $album = $_REQUEST['album'];
         $genre = $_REQUEST['genre'];
-        $songs;
+        $songs = array();
         
         $sql = "SELECT * FROM songs WHERE title LIKE '%" . $title . "%' OR album LIKE '%" . $album . "%' OR artist LIKE '%" . $artist . "%' OR genre LIKE '%" . $genre . "%'";
         
         $result = $db->query($sql);
         
         if(!result){
-            echo("Error searching for songs: " . $db->error)''
+            echo("Error searching for songs: " . $db->error);
         } else{
             if($result->num_rows > 0){
                 while($row = $result->fetch_assoc()){
@@ -38,12 +38,11 @@
             $album = $song['album'];
             $genre = $song['genre'];
             
-            $table .= "<tr><td>$id</td><td>$title</td><td>$artist</td><td>$album</td><td>$genre</td?</tr>";
+            $table .= "<tr><td>$id</td><td>$title</td><td>$artist</td><td>$album</td><td>$genre</td></tr>";
         }
         
         $table .= "</body>";
         $html = file_get_contents("../html/index.html");
         $html = str_replace("</body>", $table, $html);
-        
+        echo $html;
     }
->
