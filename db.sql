@@ -7,7 +7,8 @@ CREATE TABLE `songs` (
     `album` VARCHAR(100) NOT NULL DEFAULT '',
     `genre` VARCHAR(100) NOT NULL DEFAULT '',
     PRIMARY KEY (`id`)
-)
+);
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE users (
 	userID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	loginID varchar(255) NOT NULL,
