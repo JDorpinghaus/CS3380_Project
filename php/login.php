@@ -46,8 +46,7 @@
 	function handle_login() {
 		$username = empty($_POST['username']) ? '' : $_POST['username'];
 		$password = empty($_POST['password']) ? '' : $_POST['password'];
-        print($password);
-        print($username);
+        
         // Connect to database
         require_once 'db.php';
         
@@ -66,7 +65,7 @@
         
         // Build SQL query
 		$query = "SELECT userID FROM users WHERE loginID = '$username' AND password = '$password'";
-        print($query);
+        
 		// send $query
 		$mysqliResult = $db->query($query);
 		
