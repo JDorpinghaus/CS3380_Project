@@ -1,12 +1,14 @@
 <?php
 
-    // HTTPS redirect
+
+//     HTTPS redirect
     if ($_SERVER['HTTPS'] !== 'on') {
 		$redirectURL = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 		header("Location: $redirectURL");
 		exit;
 	}
 	
+    //if no session
 	if(!session_start()) {
 		// If the session couldn't start, present an error
 		header("Location: error.php");
@@ -25,19 +27,30 @@
 	
 	$action = empty($_POST['action']) ? '' : $_POST['action'];
 	
-	if ($action == 'do_login') {
-		handle_login();
+	if ($action == 'do_create') {
+		create_user();
 	} else {
 		login_form();
 	}
 	
-	function handle_login() {
+	function create_user() {
+        $firstName = empty($_POST['firstName']) ? '' : $_POST['firstName'];
+        $lastName = empty($_POST['lastName']) ? '' : $_POST['lastName'];
 		$username = empty($_POST['username']) ? '' : $_POST['username'];
 		$password = empty($_POST['password']) ? '' : $_POST['password'];
-	
+        $confirmPassword = empty($_POST['confirmPassword']) ? '' : $_POST['confirmPassword'];
+        
+        print $firstName . "<br>";
+        print $lastName . "<br>";
+        print $username . "<br>";
+        print $password . "<br>";
+        print $confirmPassword . "<br>";
+        
+        if(strcmp($password,$confirmPassword)==0){
+            
         
         // Require the credentials
-        require_once '../db.php';
+        require_once 'db.php';
         
         // Connect to the database
         $mysqli = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
@@ -54,48 +67,51 @@
         $password = $mysqli->real_escape_string($password);
         
         //more secure password storing for website
-        $password = sha1($password); 
+//        $password = sha1($password); 
         
-        // Build SQL query
-		$query = "SELECT id FROM users WHERE userName = '$username' AND password = '$password'";
+        // Build query
+		$query = "INSERT INTO users(firstName, lastName, username, password, addDate, changeDate) VALUES ('$firstName', '$lastName', '$username', 'password', now(), now())";
+            
+//            print $query;
+//            exit;
         
-		// send $query
+		// Run the query
 		$mysqliResult = $mysqli->query($query);
 		
-        if ($mysqliResult) {
-            // How many records were returned?
-            $match = $mysqliResult->num_rows;
-
-            // Close the results
+        // If there was a result...
+        if ($mysqli->query($query)==TRUE) {
+            
             $mysqliResult->close();
             // Close the DB connection
             $mysqli->close();
 
-
-            // If there was a match, login
-  		    if ($match == 1) {
-                $_SESSION['loggedin'] = $username;
-                header("Location: index.php");
-                exit;
-            }
-            else {
-                $error = 'Error: Incorrect username or password';
-                require "login_form.php";
-                exit;
-            }
+            
+            $error = "New User Created Successfully";
+            require "login_form.php";
+            exit;
+            
         }
-        // Else, there was no result
+            
+           
+        else{
+            $error = "Insert Error: " . $query . "<br>" . $mysqli->error;
+            require "createUser_form.php";
+            exit;
+         }
+        }
+        //  //passwords do not match
         else {
-          $error = 'Login Error: Please contact the system administrator.';
-          require "login_form.php";
+          $error = 'Error: passwords do not match!';
+          require "createUser_form.php";
           exit;
         }
 	}
-	
+    }
 	function login_form() {
 		$username = "";
 		$error = "";
 		require "login_form.php";
         exit;
 	}
+	
 ?>
