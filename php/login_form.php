@@ -41,6 +41,9 @@
             <div class="stack">
                 <input type="submit" value="Submit">
             </div>
+            <div class="stack">
+                <a href="createUser.php">Create an account</a>
+            </div>
         </form>
     </div>
 </body>

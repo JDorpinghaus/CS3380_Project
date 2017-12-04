@@ -1,7 +1,20 @@
 <?php
 
+    function checkHTTPS() {
+        if(!empty($_SERVER['HTTPS']))
+            if($_SERVER['HTTPS'] !== 'off')
+                return true; //https
+            else
+                return false; //http
+         else
+            if($_SERVER['SERVER_PORT'] == 443)
+                return true; //https
+            else
+                return false; //http
+    }
+    
     // HTTPS redirect
-    if ($_SERVER['HTTPS'] !== 'on') {
+    if (!checkHTTPS) {
 		$redirectURL = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 		header("Location: $redirectURL");
 		exit;
@@ -12,7 +25,6 @@
 		header("Location: error.php");
 		exit;
 	}
-	
 	
 	// Check to see if the user has already logged in
 	$loggedIn = empty($_SESSION['loggedin']) ? false : $_SESSION['loggedin'];
@@ -34,33 +46,29 @@
 	function handle_login() {
 		$username = empty($_POST['username']) ? '' : $_POST['username'];
 		$password = empty($_POST['password']) ? '' : $_POST['password'];
-	
-        
-        // Require the credentials
-        require_once '../db.php';
-        
-        // Connect to the database
-        $mysqli = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
+        print($password);
+        print($username);
+        // Connect to database
+        require_once 'db.php';
         
         // Check for errors
-        if ($mysqli->connect_error) {
-            $error = 'Error: ' . $mysqli->connect_errno . ' ' . $mysqli->connect_error;
+        if ($db->connect_error) {
+            $error = 'Error: ' . $db->connect_errno . ' ' . $db->connect_error;
 			require "login_form.php";
             exit;
         }
         
-        
-        $username = $mysqli->real_escape_string($username);
-        $password = $mysqli->real_escape_string($password);
+        $username = $db->real_escape_string($username);
+        $password = $db->real_escape_string($password);
         
         //more secure password storing for website
         $password = sha1($password); 
         
         // Build SQL query
-		$query = "SELECT id FROM users WHERE userName = '$username' AND password = '$password'";
-        
+		$query = "SELECT userID FROM users WHERE loginID = '$username' AND password = '$password'";
+        print($query);
 		// send $query
-		$mysqliResult = $mysqli->query($query);
+		$mysqliResult = $db->query($query);
 		
         if ($mysqliResult) {
             // How many records were returned?
@@ -69,7 +77,7 @@
             // Close the results
             $mysqliResult->close();
             // Close the DB connection
-            $mysqli->close();
+            $db->close();
 
 
             // If there was a match, login
@@ -77,8 +85,7 @@
                 $_SESSION['loggedin'] = $username;
                 header("Location: index.php");
                 exit;
-            }
-            else {
+            } else {
                 $error = 'Error: Incorrect username or password';
                 require "login_form.php";
                 exit;
