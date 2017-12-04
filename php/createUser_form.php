@@ -1,32 +1,3 @@
-<?php
-    require 'db.php';
-    
-    //functionality for creating a user and entering into the database
-    if(isset($_POST['submit'])){
-        //check if username is unique
-        $sql_check = "SELECT * FROM users WHERE loginID = ?";
-        $stmt = mysqli->prepare($sql_check);
-        $stmt->bind_param("s", $_POST['username']);
-        $stmt->execute();
-        
-        $stmt->store_result();
-        if($stmt->num_rows == 0){
-            $sql = "INSERT INTO users (loginID, password, firstName, lastName) VALUES (?,?,?,?)";
-            
-            $stmt = mysqli->prepare($sql);
-            
-            $stmt->bind_param("ssss", $_POST['username'], $_POST['password'], $_POST['firstName'], $_POST['lastName']);
-            
-            $stmt->execute();
-            $stmt->close();
-            header('login_form.php')
-        } else {
-            $error_flag = 1;
-	    $stmt->close();
-        }
-        
-    }
-?>
 <!DOCTYPE html>
 
 <html>
@@ -49,11 +20,7 @@
             }
         ?>
         
-<<<<<<< HEAD
         <form action="createUser.php" method="POST">
-=======
-        <form action="createUser_form.php" method="POST">
->>>>>>> bd112f3e1d224cd7934dc253afc650fc185ae8f3
             
             <input type="hidden" name="action" value="do_create">
             
