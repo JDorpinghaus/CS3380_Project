@@ -1,0 +1,21 @@
+<tr>
+    <td>{songId}</td>
+    <td>{title}</td>
+    <td>{artist}</td>
+    <td>{album}</td>
+    <td>{genre}</td>
+    <td>
+        <form action="/php/delete.php" method="post" enctype="multipart/form-data" style="margin:0px;">
+            <input id="songId" type="hidden" name="songId" value="{songId}">
+            <input id="submit" type="submit" value="Delete" />
+        </form>
+        <form action="/php/editForm.php" method="post" enctype="multipart/form-data" style="margin:0px;">
+            <input id="songId" type="hidden" name="songId" value="{songId}">
+            <input id="title" type="hidden" name="title" value="{title}">
+            <input id="artist" type="hidden" name="artist" value="{artist}">
+            <input id="album" type="hidden" name="album" value="{album}">
+            <input id="genre" type="hidden" name="genre" value="{genre}">
+            <input id="submit" type="submit" value="Edit" />
+        </form>
+    </td>
+</tr>

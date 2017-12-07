@@ -1,6 +1,4 @@
 <?php
-    require_once("db.php");
-    
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         header("Location: index.php");
     } else if  ($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -12,12 +10,11 @@
         $album = $_REQUEST['album'];
         $genre = $_REQUEST['genre'];
         
-        $sql = "UPDATE songs SET title='" . $title . "', artist='" . $artist . "', album='" . $album . "', genre='" . $genre . "' WHERE id='" . $id . "'";
-        $result = $db->query($sql);
-        if(!$result){
-            echo("Error updating entry: " . $db->error);
-        }
-        
-        $html = file_get_contents("../html/index.html");
+        $html = file_get_contents("../html/edit.html");
+        $html = str_replace("{songId}", $id, $html);
+        $html = str_replace("{title}", $title, $html);
+        $html = str_replace("{artist}", $artist, $html);
+        $html = str_replace("{album}", $album, $html);
+        $html = str_replace("{genre}", $genre, $html);
         echo $html;
     }

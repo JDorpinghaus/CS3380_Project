@@ -26,7 +26,7 @@
             }
             $result->close;
         }
-        
+        $tableRow = file_get_contents("../html/tableRow.html");
         $table = "<br><br><table>\n";
         $table .= "<tr><th>ID</th><th>Title</th><th>Artist</th><th>Album</th><th>Genre</th></tr>";
         
@@ -38,7 +38,12 @@
             $album = $song['album'];
             $genre = $song['genre'];
             
-            $table .= "<tr><td>$id</td><td>$title</td><td>$artist</td><td>$album</td><td>$genre</td></tr>";
+            $tableRow = str_replace("{songId}", $id, $tableRow);
+            $tableRow = str_replace("{title}", $title, $tableRow);
+            $tableRow = str_replace("{artist}", $artist, $tableRow);
+            $tableRow = str_replace("{album}", $album, $tableRow);
+            $tableRow = str_replace("{genre}", $genre, $tableRow);
+            $table .= $tableRow;
         }
         
         $table .= "</body>";
