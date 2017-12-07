@@ -24,7 +24,7 @@
         $genre = $_REQUEST['genre'];
         $songs = array();
         
-        $sql = "SELECT * FROM songs WHERE title LIKE '%" . $title . "%' OR album LIKE '%" . $album . "%' OR artist LIKE '%" . $artist . "%' OR genre LIKE '%" . $genre . "%'";
+        $sql = "SELECT * FROM songs WHERE title LIKE '%" . $title . "%' AND album LIKE '%" . $album . "%' AND artist LIKE '%" . $artist . "%' AND genre LIKE '%" . $genre . "%'";
         
         $result = $db->query($sql);
         
