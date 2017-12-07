@@ -33,6 +33,7 @@ users schema:
 
 
 ### ERD Diagram
+![alt text](https://github.com/JDorpinghaus/CS3380_Project/blob/master/ERDDatabaseFinal.png "ERD Diagram")
 
 ### CRUD
 
