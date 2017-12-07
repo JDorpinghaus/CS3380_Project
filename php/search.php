@@ -38,12 +38,13 @@
             }
             $result->close;
         }
-        $tableRow = file_get_contents("../html/tableRow.html");
+        
         $table = "<br><br><table>\n";
         $table .= "<tr><th>ID</th><th>Title</th><th>Artist</th><th>Album</th><th>Genre</th></tr>";
         
         foreach ($songs as $song){
             
+            $tableRow = file_get_contents("../html/tableRow.html");
             $id = $song['id'];
             $title = $song['title'];
             $artist = $song['artist'];
