@@ -7,7 +7,6 @@
 	
 	$loggedIn = empty($_SESSION['loggedin']) ? false : $_SESSION['loggedin'];
 	
-	
 	if (!$loggedIn) {
 		header("Location: login.php");
 		exit;
