@@ -6,7 +6,9 @@ CREATE TABLE `songs` (
     `artist` VARCHAR(100) NOT NULL DEFAULT '',
     `album` VARCHAR(100) NOT NULL DEFAULT '',
     `genre` VARCHAR(100) NOT NULL DEFAULT '',
-    PRIMARY KEY (`id`)
+    `userID`, INT NOT NULL,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (userID) REFERENCES users(userID)
 );
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE users (

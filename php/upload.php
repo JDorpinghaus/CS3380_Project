@@ -30,9 +30,21 @@
         
         $tags = $getID3->analyze($_FILES['mp3']['tmp_name']);
         getid3_lib::CopyTagsToComments($tags);
+        $username = $_SESSION['loggedIn'];
+        $sql = "SELECT userID FROM users WHERE loginID = '" . $username . "'";
+        $result = $db->query($sql);
         
+        if(!result){
+            echo("Error searching for songs: " . $db->error);
+        } else{
+            if($result->num_rows > 0){
+            	$user = $result->fetch_assoc()
+            }
+            $result->close;
+        }
+        $userID = $user['userID'];
         $mp3 = addslashes(file_get_contents($_FILES['mp3']['tmp_name'])); //TODO better way to do this
-        $sql = "INSERT INTO songs (mp3, title, artist, album, genre) VALUES ('" . $mp3 . "', '" . $tags[comments_html][title][0] . "', '" . $tags[comments_html][artist][0] . "', '" . $tags[comments_html][album][0] . "', '" . $tags[comments_html][genre][0] . "')";
+        $sql = "INSERT INTO songs (mp3, title, artist, album, genre, userID) VALUES ('" . $mp3 . "', '" . $tags[comments_html][title][0] . "', '" . $tags[comments_html][artist][0] . "', '" . $tags[comments_html][album][0] . "', '" . $tags[comments_html][genre][0] . "', '" . $userID "')";
         $result = $db->query($sql);
         if(!$result){
             echo("Error inserting file: " . $db->error);

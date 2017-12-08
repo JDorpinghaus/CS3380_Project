@@ -40,7 +40,7 @@
         }
         
         $table = "<br><br><table>\n";
-        $table .= "<tr><th>ID</th><th>Title</th><th>Artist</th><th>Album</th><th>Genre</th></tr>";
+        $table .= "<tr><th>ID</th><th>Title</th><th>Artist</th><th>Album</th><th>Genre</th><th>User ID</th></tr>";
         
         foreach ($songs as $song){
             
@@ -50,12 +50,15 @@
             $artist = $song['artist'];
             $album = $song['album'];
             $genre = $song['genre'];
+            $userID = $song['userID'];
             
             $tableRow = str_replace("{songId}", $id, $tableRow);
             $tableRow = str_replace("{title}", $title, $tableRow);
             $tableRow = str_replace("{artist}", $artist, $tableRow);
             $tableRow = str_replace("{album}", $album, $tableRow);
             $tableRow = str_replace("{genre}", $genre, $tableRow);
+            $tableRow = str_replace("{userID}", $userID, $tableRow);
+            
             $table .= $tableRow;
         }
         
