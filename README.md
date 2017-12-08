@@ -36,5 +36,26 @@ users schema:
 ![alt text](https://github.com/JDorpinghaus/CS3380_Project/blob/master/ERDDatabaseFinal.png "ERD Diagram")
 
 ### CRUD
+#### Create
+Users can upload songs to the database using the upload function of our application. After the user has logged in the user can click the upload button to take them to a screen where they choose an mp3 file to be uploaded to the database. The functionality of this can be seen in the upload.php file in the php folder of the project. The execution of the sql statement that makes this happen can be seen on lines 35 and 36:
+```php
+$sql = "INSERT INTO songs (mp3, title, artist, album, genre) VALUES ('" . $mp3 . "', '" . $tags[comments_html][title][0] . "', '" . $tags[comments_html][artist][0] . "', '" . $tags[comments_html][album][0] . "', '" . $tags[comments_html][genre][0] . "')";
+$result = $db->query($sql);
+```
+
+#### Read
+Users can search for any song that is in the database using the search function of our application. After the user has logged in, the user can click the search function and then search based on title, artist, album, or genre. The search will then show a table full of all the songs in the database that match their search requirements. The functionality of this can be seen in the search.php file in the php folder of the project. The execution of the sql statement that makes this happen can be seen on lines 20 - 29:
+
+```php
+$id = $_REQUEST['songId'];
+$title = $_REQUEST['title'];
+$artist = $_REQUEST['artist'];
+$album = $_REQUEST['album'];
+$genre = $_REQUEST['genre'];
+$songs = array();
+
+$sql = "SELECT * FROM songs WHERE title LIKE '%" . $title . "%' AND album LIKE '%" . $album . "%' AND artist LIKE '%" . $artist . "%' AND genre LIKE '%" . $genre . "%'";
+$result = $db->query($sql);
+```
 
 ### Demonstration Video
