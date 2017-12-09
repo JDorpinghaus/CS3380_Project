@@ -58,4 +58,28 @@ $sql = "SELECT * FROM songs WHERE title LIKE '%" . $title . "%' AND album LIKE '
 $result = $db->query($sql);
 ```
 
+#### Update
+Users can edit any song in the database if they made a mistake when inserting a song or if they notice an error. After the user has logged in and searched for a song, the table of songs in the database will come up and an edit button and delete button will also be in the table. The edit button will bring the user to the edit screen where they can change the entry. The functionality for this can be seen in edit.php on lines 21-28:
+
+```php
+$id = $_REQUEST['songId'];
+$title = $_REQUEST['title'];
+$artist = $_REQUEST['artist'];
+$album = $_REQUEST['album'];
+$genre = $_REQUEST['genre'];
+
+$sql = "UPDATE songs SET title='" . $title . "', artist='" . $artist . "', album='" . $album . "', genre='" . $genre . "' WHERE id='" . $id . "'";
+$result = $db->query($sql);
+```
+
+#### Delete
+Users can delete any song in the database if they believe that it does not belong, if the mp3 file is broken, etc. After the user has logged in and searched for a song, the table of songs in the database will come up and an edit button and delete button will also be in the table. The delete button will remove the song from the database. The functionality for this can be seen in delete.php on lines 21-27:
+
+```php
+$id = $_REQUEST['songId'];
+$songs = array();
+$sql = "DELETE FROM songs WHERE id='" . $id . "'";
+$result = $db->query($sql);
+```
+
 ### Demonstration Video
