@@ -1,15 +1,4 @@
 DROP TABLE IF EXISTS `songs`;
-CREATE TABLE `songs` (
-    `id` INT(11) NOT NULL AUTO_INCREMENT,
-    `mp3` MEDIUMBLOB NOT NULL,
-    `title` VARCHAR(100) NOT NULL DEFAULT '',
-    `artist` VARCHAR(100) NOT NULL DEFAULT '',
-    `album` VARCHAR(100) NOT NULL DEFAULT '',
-    `genre` VARCHAR(100) NOT NULL DEFAULT '',
-    `userID`, INT NOT NULL,
-    PRIMARY KEY (`id`),
-    FOREIGN KEY (userID) REFERENCES users(userID)
-);
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE users (
 	userID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -17,4 +6,15 @@ CREATE TABLE users (
 	password varchar(255) NOT NULL,
 	firstName varchar(128) NOT NULL,
 	lastName varchar(128) NOT NULL
+);
+CREATE TABLE `songs` (
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
+    `mp3` MEDIUMBLOB NOT NULL,
+    `title` VARCHAR(100) NOT NULL DEFAULT '',
+    `artist` VARCHAR(100) NOT NULL DEFAULT '',
+    `album` VARCHAR(100) NOT NULL DEFAULT '',
+    `genre` VARCHAR(100) NOT NULL DEFAULT '',
+    `userID` INT NOT NULL,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`userID`) REFERENCES users(`userID`)
 );
