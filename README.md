@@ -1,10 +1,10 @@
 # CS3380 Project
 ### Group Members
-Jacob Dorpinghaus
-Jacob Ross
-Mason Breece
-Lawrence Neely
-Matt Barber
+Jacob Dorpinghaus  
+Jacob Ross  
+Mason Breece  
+Lawrence Neely  
+Matt Barber  
 
 ### Application Description
 The application we created is an mp3 storage system. There is a login system to create an account to begin to use the database. Any user with an account can login and then upload any mp3 file to the database to hold on to. The application takes the metadata of the mp3 and populates the database with the song name, artist, album and genre. Users can also search the database for any song that the database might hold. Users can edit and delete any song in the database as well. The purpose is to have an “open to everyone” database that can be a hub of songs that anyone can contribute to. 
@@ -20,6 +20,7 @@ songs schema:
 |artist|varchar(100)|NO||||
 |album|varchar(100)|NO||||
 |genre|varchar(100)|NO||||
+|userID|int(11)|NO|MUL|NULL||
 
 users schema:
 
@@ -37,7 +38,7 @@ users schema:
 
 ### CRUD
 #### Create
-Users can upload songs to the database using the upload function of our application. After the user has logged in the user can click the upload button to take them to a screen where they choose an mp3 file to be uploaded to the database. The functionality of this can be seen in the upload.php file in the php folder of the project. The execution of the sql statement that makes this happen can be seen on lines 35 and 36:
+Users can upload songs to the database using the upload function of our application. After the user has logged in the user can click the upload button to take them to a screen where they choose an mp3 file to be uploaded to the database. The functionality of this can be seen in the upload.php file in the php folder of the project. The execution of the sql statement that makes this happen can be seen on lines 47 and 48:
 ```php
 $sql = "INSERT INTO songs (mp3, title, artist, album, genre) VALUES ('" . $mp3 . "', '" . $tags[comments_html][title][0] . "', '" . $tags[comments_html][artist][0] . "', '" . $tags[comments_html][album][0] . "', '" . $tags[comments_html][genre][0] . "')";
 $result = $db->query($sql);
