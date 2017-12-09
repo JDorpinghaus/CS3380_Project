@@ -44,7 +44,7 @@
         }
         $userID = $user['userID'];
         $mp3 = addslashes(file_get_contents($_FILES['mp3']['tmp_name'])); //TODO better way to do this
-        $sql = "INSERT INTO songs (mp3, title, artist, album, genre, userID) VALUES ('" . $mp3 . "', '" . $tags[comments_html][title][0] . "', '" . $tags[comments_html][artist][0] . "', '" . $tags[comments_html][album][0] . "', '" . $tags[comments_html][genre][0] . "', '" . $userID "')";
+        $sql = "INSERT INTO songs (mp3, title, artist, album, genre, userID) VALUES ('" . $mp3 . "', '" . $tags[comments_html][title][0] . "', '" . $tags[comments_html][artist][0] . "', '" . $tags[comments_html][album][0] . "', '" . $tags[comments_html][genre][0] . "', '" . $userID ."')";
         $result = $db->query($sql);
         if(!$result){
             echo("Error inserting file: " . $db->error);
